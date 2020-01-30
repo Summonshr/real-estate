@@ -14,3 +14,7 @@
 Route::resource('properties','PropertyResource');
 
 Route::resource('properties.tags','TagResource');
+
+Route::resource('properties.featured','FeatureResource');
+
+Route::delete('properties/{property}/featured','FeatureResource@destroy');

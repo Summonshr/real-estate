@@ -23,6 +23,7 @@ class TagTest extends TestCase
 
         $this->post('properties/3/tags',['key'=>'location','value'=>'This does not exists yet'])->assertStatus(404);
     }
+
     /**
      * Test if tags gets created
      *

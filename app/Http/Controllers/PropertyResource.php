@@ -8,7 +8,6 @@ use App\Http\Requests\Property\FetchProperty;
 use App\Http\Requests\Property\UpdateProperty;
 use App\Http\Requests\Property\ViewProperties;
 use App\Property;
-use Illuminate\Http\Request;
 
 class PropertyResource extends Controller
 {

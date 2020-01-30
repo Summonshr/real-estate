@@ -73,7 +73,7 @@ class PropertyTest extends TestCase
 
         $this->assertDatabaseHas('properties', ['name' => 'New Property Edited','type'=>'land']);
 
-        $this->put('properties/1',['name'=>'New Property Edited Again', 'type'=>'House'])->assertStatus(202);
+        $this->put('properties/1',['name'=>'New Property Edited Again', 'type'=>'house'])->assertStatus(202);
 
         $this->assertDatabaseHas('properties', ['name' => 'New Property Edited Again','type'=>'house']);
 

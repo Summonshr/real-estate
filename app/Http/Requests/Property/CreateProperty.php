@@ -24,7 +24,8 @@ class CreateProperty extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'=>'required',
+            'type'=>'in:house,land',
         ];
     }
 }

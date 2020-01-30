@@ -24,7 +24,8 @@ class UpdateProperty extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'=>'required',
+            'type'=>'in:house,land',
         ];
     }
 }

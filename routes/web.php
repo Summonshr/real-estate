@@ -1,17 +1,23 @@
 <?php
 
-Route::post('sign-up','UserController@signup');
+Route::group(['middeware'=>'guest'], function(){
+    Route::post('sign-up', 'UserController@signup');
 
-Route::post('sign-in','UserController@signin');
+    Route::post('sign-in', 'UserController@signin');
+});
 
-Route::post('change-password','UserController@changePassword');
+Route::view('/', 'welcome');
 
-Route::view('/','welcome');
+Route::group(['middleware'=>'auth'], function () {
 
-Route::resource('properties','PropertyResource');
+    Route::post('change-password', 'UserController@changePassword');
 
-Route::resource('properties.tags','TagResource');
+    Route::resource('properties', 'PropertyResource');
 
-Route::resource('properties.featured','FeatureResource');
+    Route::resource('properties.tags', 'TagResource');
 
-Route::delete('properties/{property}/featured','FeatureResource@destroy');
+    Route::resource('properties.featured', 'FeatureResource');
+
+    Route::delete('properties/{property}/featured', 'FeatureResource@destroy');
+
+});

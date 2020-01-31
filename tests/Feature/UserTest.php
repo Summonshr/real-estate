@@ -20,10 +20,8 @@ class UserTest extends TestCase
 
     public function testPasswordCanBeUpdated()
     {
-        $this->loginFirstUser();
-
+        $this->login();
         $this->post('/change-password',['old_password'=>'password', 'new_password'=>'passwords','new_password_confirmation'=>'passwords'])->assertStatus(202);
         $this->post('/change-password',['old_password'=>'password', 'new_password'=>'passwords','new_password_confirmation'=>'passwords'])->assertStatus(403);
-
     }
 }

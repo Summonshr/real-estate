@@ -11,6 +11,8 @@
 |
 */
 
+Route::view('/','welcome');
+
 Route::resource('properties','PropertyResource');
 
 Route::resource('properties.tags','TagResource');

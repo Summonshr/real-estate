@@ -15,7 +15,9 @@ class FeaturedTest extends TestCase
      */
     public function testPropertiesCanBeFeatured()
     {
-        $this->loginFirstUser();
+        $this->login();
+
+        $this->addProperty();
 
         $this->assertDatabaseMissing('featureds',['property_id'=>1]);
 
@@ -25,19 +27,39 @@ class FeaturedTest extends TestCase
 
         $this->assertDatabaseHas('featureds',['property_id'=>1]);
 
-        $this->assertDatabaseHas('featureds',['property_id'=>'1']);
+    }
 
-        $this->post('/properties/2/featured')->assertStatus(403);
+    public function testAnotherUsersPropertyCannotBeTouched()
+    {
+        $this->login();
+
+        $this->addProperty();
+
+        $this->loginSecondUser();
+
+        $this->post('/properties/1/featured')->assertStatus(403);
+
+    }
+
+    public function testPropertyCanBeDeleted()
+    {
+        $this->login();
+
+        $this->addProperty();
+
+        $this->post('/properties/1/featured')->assertStatus(201);
+
+        $this->loginSecondUser();
+
+        $this->delete('/properties/1/featured')->assertStatus(403);
+
+        $this->login();
 
         $this->delete('/properties/1/featured')->assertStatus(202);
 
         $this->assertSoftDeleted('featureds',['property_id'=>'1']);
 
         $this->assertDatabaseHas('properties',['id'=>1, 'is_featured'=>false]);
-
-        $this->loginSecondUser();
-
-        $this->post('/properties/2/featured')->assertStatus(201);
 
     }
 }

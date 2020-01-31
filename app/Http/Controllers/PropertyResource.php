@@ -25,6 +25,8 @@ class PropertyResource extends Controller
 
         $request->user()->properties()->save($property);
 
+        $request->user()->deduct(100);
+
         return response('',201);
     }
 

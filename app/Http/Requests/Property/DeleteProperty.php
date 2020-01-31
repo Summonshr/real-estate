@@ -13,7 +13,7 @@ class DeleteProperty extends FormRequest
      */
     public function authorize()
     {
-        return auth()->check() && $this->route('property') && auth()->id() == $this->route('property')->user_id;
+        return $this->route('property') && auth()->id() == $this->route('property')->user_id;
     }
 
     /**

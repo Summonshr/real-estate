@@ -14,7 +14,7 @@ class ChangePassword extends FormRequest
      */
     public function authorize()
     {
-        return auth()->check() && Hash::check($this->get('old_password'), $this->user()->password);
+        return Hash::check($this->get('old_password'), $this->user()->password);
     }
 
     /**

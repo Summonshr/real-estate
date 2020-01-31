@@ -13,7 +13,7 @@ class FetchProperty extends FormRequest
      */
     public function authorize()
     {
-        return auth()->check() && $this->route('property')->user_id == auth()->id();
+        return $this->route('property')->user_id == auth()->id();
     }
 
     /**

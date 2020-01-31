@@ -13,7 +13,7 @@ class CreateProperty extends FormRequest
      */
     public function authorize()
     {
-        return auth()->check() && auth()->user()->balance >= 100;
+        return auth()->user()->balance >= 100;
     }
 
     /**

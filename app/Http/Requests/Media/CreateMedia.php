@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Tag;
+namespace App\Http\Requests\Media;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateTag extends FormRequest
+class CreateMedia extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class UpdateTag extends FormRequest
      */
     public function authorize()
     {
-        return $this->route('property')->user_id == auth()->id() && $this->route('tag')->property_id == $this->route('property')->id;
+        return false;
     }
 
     /**
@@ -24,7 +24,7 @@ class UpdateTag extends FormRequest
     public function rules()
     {
         return [
-            'value'=>'required'
+            //
         ];
     }
 }

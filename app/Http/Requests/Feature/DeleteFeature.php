@@ -13,10 +13,6 @@ class DeleteFeature extends FormRequest
      */
     public function authorize()
     {
-        if(!auth()->check()){
-            return false;
-        }
-
         return $this->route('property') && auth()->id() == $this->route('property')->user_id;
     }
 

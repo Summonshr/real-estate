@@ -13,7 +13,7 @@ class CreateTag extends FormRequest
      */
     public function authorize()
     {
-        return auth()->check() && $this->route('property') && $this->route('property')->user_id == auth()->id();
+        return $this->route('property') && $this->route('property')->user_id == auth()->id();
     }
 
     /**

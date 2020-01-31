@@ -16,12 +16,6 @@ class RechargeWithCoupon extends FormRequest
      */
     public function authorize()
     {
-        if(!auth()->check()) {
-            return false;
-        }
-
-        logger($this->get('code'));
-
         $coupon = Coupon::where('code', $this->get('code'))->firstOrFail();
 
         return true;

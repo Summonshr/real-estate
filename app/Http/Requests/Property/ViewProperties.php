@@ -13,7 +13,7 @@ class ViewProperties extends FormRequest
      */
     public function authorize()
     {
-        return auth()->check();
+        return true;
     }
 
     /**

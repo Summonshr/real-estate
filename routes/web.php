@@ -19,6 +19,8 @@ Route::group(['middleware'=>['auth','agent']], function () {
 
     Route::resource('properties.featured', 'FeatureResource');
 
+    Route::resource('properties.media', 'MediaResource');
+
     Route::delete('properties/{property}/featured', 'FeatureResource@destroy');
 
 });

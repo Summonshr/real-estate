@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 use Illuminate\Validation\Rule;
 use App\Coupon;
 use Illuminate\Foundation\Http\FormRequest;
+use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Translation\Exception\NotFoundResourceException;
 
 class RechargeWithCoupon extends FormRequest

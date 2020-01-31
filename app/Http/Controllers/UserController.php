@@ -7,7 +7,6 @@ use App\Http\Requests\ChangePassword;
 use App\Http\Requests\RechargeWithCoupon;
 use App\Http\Requests\User\SignIn;
 use App\Http\Requests\User\SignUp;
-use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -23,8 +22,11 @@ class UserController extends Controller
     public function signup(SignUp $request){
 
         $user = new \App\User;
+
         $user->fill($request->only(['email','name','password']));
+
         $user->role = 'agent';
+
         $user->save();
 
         return response('', 201);
@@ -33,24 +35,25 @@ class UserController extends Controller
     public function changePassword(ChangePassword $request)
     {
         $user = $request->user();
+
         $user->password = $request->get('password');
+
         $user->save();
+
         return response('',202);
     }
 
     public function recharge(RechargeWithCoupon $request)
     {
-        $coupon = Coupon::where('code',$request->get('code'))->first();
+        $coupon = Coupon::where('code', $request->get('code'))->first();
 
-        $coupon->decrement('count');
+        if($coupon->isVoid()) {
+            return response('', 410);
+        }
 
-        $coupon->save();
+        $coupon->setUsed();
 
-        $user = $request->user();
-
-        $user->balance += $coupon->amount;
-
-        $user->save();
+        $request->user()->recharge($coupon->amount);
 
         return response('', 202);
     }

@@ -52,5 +52,10 @@ class UserTest extends TestCase
         ->addProperty(403);
 
         $this->post('/recharge',['code'=>'RANDOM'])->assertStatus(404);
+
+        $this->post('/recharge',['code'=>$coupon->code])->assertStatus(202);
+
+        $this->post('/recharge',['code'=>$coupon->code])->assertStatus(410);
+
     }
 }

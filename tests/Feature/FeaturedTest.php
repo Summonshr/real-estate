@@ -9,7 +9,7 @@ use Tests\TestCase;
 class FeaturedTest extends TestCase
 {
     /**
-     * A basic feature test example.
+     * Test Properties can be featured.
      *
      * @return void
      */

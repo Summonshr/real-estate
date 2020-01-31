@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateFeature;
-use App\Http\Requests\DeleteFeature;
+use App\Http\Requests\Feature\CreateFeature;
+use App\Http\Requests\Feature\DeleteFeature;
 use App\Property;
 use Illuminate\Http\Request;
 

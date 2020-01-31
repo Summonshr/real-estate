@@ -8,7 +8,7 @@ Route::group(['middeware'=>'guest'], function(){
 
 Route::view('/', 'welcome');
 
-Route::group(['middleware'=>'auth'], function () {
+Route::group(['middleware'=>['auth','agent']], function () {
 
     Route::post('change-password', 'UserController@changePassword');
 

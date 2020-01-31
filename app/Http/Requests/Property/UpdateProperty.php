@@ -25,7 +25,7 @@ class UpdateProperty extends FormRequest
     {
         return [
             'name'=>'required',
-            'type'=>'in:house,land',
+            'type'=>'in:'.\App\Type::pluck('key')->join(',')
         ];
     }
 }

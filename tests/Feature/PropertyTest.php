@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Property;
 use Tests\TestCase;
 
 class PropertyTest extends TestCase
@@ -13,10 +14,15 @@ class PropertyTest extends TestCase
      */
     public function testPropertyGetsInserted()
     {
+        $this->login();
+
+        $this->addProperty();
 
         $this->assertDatabaseHas('properties', ['name' => 'New Property']);
 
-        $this->assertDatabaseHas('properties', ['name' => 'Next Property']);
+        $this->addProperty();
+
+        $this->assertCount(2, \App\Property::all());
 
     }
 
@@ -25,7 +31,9 @@ class PropertyTest extends TestCase
      */
     public function testReturnData()
     {
-        $this->loginFirstUser();
+        $this->login();
+
+        $this->addProperty();
 
         $response = $this->get('/properties')->assertStatus(200);
 
@@ -35,25 +43,24 @@ class PropertyTest extends TestCase
 
         $response->assertJsonMissing([['user_id'=>3]]);
 
-        $response->assertJson([['tags'=>[['id'=>1]]]]);
 
         $this->get('/properties/1')->assertStatus(200);
 
-        $this->get('/properties/2')->assertStatus(403);
+        $this->loginSecondUser();
+
+        $this->addProperty();
+
+        $this->get('/properties/1')->assertStatus(403);
 
         $this->get('/properties/4')->assertStatus(404);
 
-        $this->loginSecondUser();
-
         $response = $this->get('/properties')->assertStatus(200);
 
-        $response->assertJson([['name'=>'Next Property']]);
+        $response->assertJson([['name'=>'New Property']]);
 
         $response->assertJson([['user_id'=>3]]);
 
         $response->assertJsonMissing([['user_id'=>2]]);
-
-        $this->get('/properties/1')->assertStatus(403);
 
     }
     /**
@@ -63,9 +70,15 @@ class PropertyTest extends TestCase
      */
     public function testEditable()
     {
-        $this->loginFirstUser();
-
+        $this->login();
+        $this->addProperty();
         $this->put('properties/4',['name'=>'Property that does not exists'])->assertStatus(404);
+
+        $this->loginSecondUser();
+
+        $this->addProperty();
+
+        $this->login();
 
         $this->put('properties/2',['name'=>'Property that this user does nto have access to'])->assertStatus(403);
 
@@ -91,18 +104,20 @@ class PropertyTest extends TestCase
      * Test if property gets deleted
      */
     public function testPropertyGetsDeleted(){
+        $this->login()->addProperty()->addTags(1);
 
         $this->loginSecondUser();
 
         $this->delete('properties/1')->assertStatus(403);
 
-        $this->loginFirstUser();
+        $this->login();
 
         $this->delete('properties/1')->assertStatus(202);
 
-        $this->assertSoftDeleted('properties',['id'=>1]);
+        $this->assertSoftDeleted('properties',['id'=>"1"]);
 
-        $this->assertSoftDeleted('tags',['property_id'=>1]);
+        $this->assertSoftDeleted('tags',['property_id'=>"1"]);
+
     }
 
 }

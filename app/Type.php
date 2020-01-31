@@ -15,6 +15,12 @@ class Type extends Model
         ],
         [
             'key' => 'house'
+        ],
+        [
+            'key' => 'bunglow'
+        ],
+        [
+            'key' => 'apartment'
         ]
     ];
 

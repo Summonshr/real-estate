@@ -27,23 +27,31 @@ trait CreatesApplication
 
         $this->artisan('db:seed');
 
-        $this->loginFirstUser();
+    }
 
-        $this->post('/properties', ['name' => 'New Property', 'type' => 'land']);
+    public function addProperty(){
 
-        $this->post('/properties/1/tags', ['key' => 'location', 'value' => 'South West England']);
+        $this->post('/properties', ['name' => 'New Property', 'type' => 'land'])->assertStatus(201);
 
-        $this->loginSecondUser();
-
-        $this->post('/properties', ['name' => 'Next Property', 'type' => 'house']);
+        return $this;
 
     }
 
-    public function loginFirstUser(){
+    public function addTags($id){
+        $this->post('/properties/'.$id.'/tags', ['key' => 'location', 'value' => 'South West England'])->assertStatus(201);
+
+        return $this;
+    }
+
+    public function login(){
         auth()->login(\App\User::where('role', 'agent')->first());
+
+        return $this;
     }
 
     public function loginSecondUser(){
         auth()->login(\App\User::where('role', 'agent')->skip(1)->first());
+
+        return $this;
     }
 }

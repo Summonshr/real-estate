@@ -6,6 +6,8 @@ Route::post('sign-in','UserController@signin');
 
 Route::post('change-password','UserController@changePassword');
 
+Route::view('/','welcome');
+
 Route::resource('properties','PropertyResource');
 
 Route::resource('properties.tags','TagResource');

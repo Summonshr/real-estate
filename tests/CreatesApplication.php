@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use App\User;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Testing\DatabaseMigrations as TestingDatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase as TestingRefreshDatabase;
@@ -25,13 +26,13 @@ trait CreatesApplication
     public function setUp(): void{
         parent::setUp();
 
-        $this->artisan('db:seed');
+        $user = factory(User::class, 3)->create();
 
     }
 
-    public function addProperty(){
+    public function addProperty($status = 201){
 
-        $this->post('/properties', ['name' => 'New Property', 'type' => 'land'])->assertStatus(201);
+        $this->post('/properties', ['name' => 'New Property', 'type' => 'land'])->assertStatus($status);
 
         return $this;
 

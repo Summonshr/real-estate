@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Coupon;
 use App\Http\Requests\ChangePassword;
+use App\Http\Requests\RechargeWithCoupon;
 use App\Http\Requests\User\SignIn;
 use App\Http\Requests\User\SignUp;
 use Illuminate\Http\Request;
@@ -34,5 +36,22 @@ class UserController extends Controller
         $user->password = $request->get('password');
         $user->save();
         return response('',202);
+    }
+
+    public function recharge(RechargeWithCoupon $request)
+    {
+        $coupon = Coupon::where('code',$request->get('code'))->first();
+
+        $coupon->decrement('count');
+
+        $coupon->save();
+
+        $user = $request->user();
+
+        $user->balance += $coupon->amount;
+
+        $user->save();
+
+        return response('', 202);
     }
 }

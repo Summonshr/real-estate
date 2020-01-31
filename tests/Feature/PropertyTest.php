@@ -16,13 +16,21 @@ class PropertyTest extends TestCase
     {
         $this->login();
 
+        $balance = auth()->user()->balance;
+
         $this->addProperty();
+
+        $this->assertTrue($balance - 100 === auth()->user()->balance * 1);
 
         $this->assertDatabaseHas('properties', ['name' => 'New Property']);
 
         $this->addProperty();
 
         $this->assertCount(2, \App\Property::all());
+
+        $this->assertTrue($balance - 200 === auth()->user()->balance * 1);
+
+        $this->addProperty(403);
 
     }
 
@@ -39,10 +47,9 @@ class PropertyTest extends TestCase
 
         $response->assertJson([['name'=>'New Property']]);
 
-        $response->assertJson([['user_id'=>2]]);
+        $response->assertJson([['user_id'=>auth()->id()]]);
 
-        $response->assertJsonMissing([['user_id'=>3]]);
-
+        $response->assertJsonMissing([['user_id'=>auth()->id() + 1]]);
 
         $this->get('/properties/1')->assertStatus(200);
 
@@ -58,9 +65,9 @@ class PropertyTest extends TestCase
 
         $response->assertJson([['name'=>'New Property']]);
 
-        $response->assertJson([['user_id'=>3]]);
+        $response->assertJson([['user_id'=>auth()->id()]]);
 
-        $response->assertJsonMissing([['user_id'=>2]]);
+        $response->assertJsonMissing([['user_id'=>auth()->id() + 1]]);
 
     }
     /**
@@ -71,7 +78,9 @@ class PropertyTest extends TestCase
     public function testEditable()
     {
         $this->login();
+
         $this->addProperty();
+
         $this->put('properties/4',['name'=>'Property that does not exists'])->assertStatus(404);
 
         $this->loginSecondUser();

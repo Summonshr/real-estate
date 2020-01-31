@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Coupon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -23,5 +24,33 @@ class UserTest extends TestCase
         $this->login();
         $this->post('/change-password',['old_password'=>'password', 'new_password'=>'passwords','new_password_confirmation'=>'passwords'])->assertStatus(202);
         $this->post('/change-password',['old_password'=>'password', 'new_password'=>'passwords','new_password_confirmation'=>'passwords'])->assertStatus(403);
+    }
+
+    public function testBalanceCanBeRecharged(){
+
+        factory(Coupon::class, 3)->create();
+
+        $this->login();
+
+        $response = $this->post('/recharge',['code'=>'ABCXYZ'])->assertStatus(404);
+
+        $coupon = Coupon::first();
+
+        $balance = auth()->user()->balance;
+
+        $this->post('/recharge',['code'=>$coupon->code])->assertStatus(202);
+
+        $this->assertTrue(auth()->user()->balance * 1 == $balance + $coupon->amount);
+
+        $this->addProperty()
+        ->addProperty()
+        ->addProperty()
+        ->addProperty()
+        ->addProperty()
+        ->addProperty()
+        ->addProperty()
+        ->addProperty(403);
+
+        $this->post('/recharge',['code'=>'RANDOM'])->assertStatus(404);
     }
 }

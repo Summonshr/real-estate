@@ -35,6 +35,12 @@ class User extends Authenticatable
         $this->save();
     }
 
+    public function recharge($amount)
+    {
+        $this->balance = $this->balance + $amount;
+        $this->save();
+    }
+
     public function isAgent()
     {
         return $this->role === 'agent';

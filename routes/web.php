@@ -10,6 +10,8 @@ Route::view('/', 'welcome');
 
 Route::group(['middleware'=>['auth','agent']], function () {
 
+    Route::post('recharge','UserController@recharge');
+
     Route::post('change-password', 'UserController@changePassword');
 
     Route::resource('properties', 'PropertyResource');

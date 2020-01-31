@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-
+use Spatie\MediaLibrary\Models\Media;
 
 class Property extends Model implements HasMedia
 {
@@ -41,5 +41,18 @@ class Property extends Model implements HasMedia
 
         $this->featured()->delete();
 
+    }
+
+    public function isAccessible()
+    {
+        return $this->user_id = auth()->id();
+    }
+
+    public function registerMediaConversions(Media $media = null)
+    {
+        $this->addMediaConversion('thumb')
+              ->width(368)
+              ->height(232)
+              ->sharpen(10);
     }
 }

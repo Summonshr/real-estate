@@ -8,15 +8,6 @@ use Illuminate\Http\Request;
 
 class MediaResource extends Controller
 {
-    public function index()
-    {
-        //
-    }
-
-    public function create()
-    {
-        //
-    }
 
     public function store(CreateMedia $request, Property $property)
     {
@@ -25,23 +16,4 @@ class MediaResource extends Controller
         return response('', 201);
     }
 
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
-    }
 }

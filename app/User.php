@@ -7,15 +7,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
 
-      protected $fillable = [
-        'name', 'email', 'password',
+    protected $fillable = [
+        'name', 'email', 'password', 'phone'
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password', 'remember_token',
     ];
@@ -24,7 +19,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function setPasswordAttribute($password){
+    public function setPasswordAttribute($password)
+    {
         $this->attributes['password'] = bcrypt($password);
     }
 
@@ -33,12 +29,14 @@ class User extends Authenticatable
         return $this->hasMany(Property::class);
     }
 
-    public function deduct($amount){
-        $this->balance= $this->balance - $amount;
+    public function deduct($amount)
+    {
+        $this->balance = $this->balance - $amount;
         $this->save();
     }
 
-    public function isAgent(){
+    public function isAgent()
+    {
         return $this->role === 'agent';
     }
 }

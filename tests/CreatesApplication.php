@@ -44,10 +44,15 @@ trait CreatesApplication
         $files = glob($path.'/*');
 
         foreach ($files as $file) {
+
             if(is_dir($file)){
+
                 $this->deleteFilesWithIn($file);
+
                 rmdir($file);
-            } else {
+            }
+
+            if(is_file($file)){
                 unlink($file);
             }
         }
@@ -55,7 +60,6 @@ trait CreatesApplication
 
     public function addProperty($status = 201)
     {
-
         $this->post('/properties', ['name' => 'New Property', 'type' => 'land'])->assertStatus($status);
 
         return $this;

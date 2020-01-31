@@ -1,5 +1,4 @@
 <?php
-
 Route::group(['middeware'=>'guest'], function(){
     Route::post('sign-up', 'UserController@signup');
 

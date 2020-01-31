@@ -25,7 +25,7 @@ class PropertyResource extends Controller
 
         $request->user()->properties()->save($property);
 
-        $request->user()->deduct(100);
+        $request->user()->deduct(config('settings.price_per_property'));
 
         return response('',201);
     }
@@ -49,8 +49,6 @@ class PropertyResource extends Controller
     public function destroy(DeleteProperty $request, Property $property)
     {
         $property->delete();
-
-        $property->tags()->delete();
 
         return response('',202);
     }

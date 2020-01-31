@@ -14,6 +14,16 @@ class Property extends Model implements HasMedia
 
     public $fillable = ['name','type'];
 
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleted(function ($property) {
+            $property->tags()->delete();
+        });
+    }
+
     public function tags(){
         return $this->hasMany(\App\Tag::class);
     }

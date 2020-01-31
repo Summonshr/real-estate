@@ -9,9 +9,9 @@ use Illuminate\Http\Request;
 class MediaResource extends Controller
 {
 
-    public function store(CreateMedia $request, Property $property)
+    public function store(CreateMedia $request, Property $property, $type = 'images')
     {
-        $property->addMedia($request->file('file'))->toMediaCollection('images');
+        $property->addMedia($request->file('file'))->toMediaCollection($type);
 
         return response('', 201);
     }

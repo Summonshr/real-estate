@@ -12,6 +12,7 @@
         "calebporzio/sushi": "^1.0",
         "doctrine/dbal": "^2.10",
         "fideloper/proxy": "^4.0",
+        "inertiajs/inertia-laravel": "^0.2.4",
         "laravel/framework": "^6.12",
         "laravel/tinker": "^2.0",
         "php-ffmpeg/php-ffmpeg": "^0.14.0",

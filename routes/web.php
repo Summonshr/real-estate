@@ -5,7 +5,7 @@ Route::group(['middeware'=>'guest'], function(){
     Route::post('sign-in', 'UserController@signin');
 });
 
-Route::view('/', 'welcome');
+Route::get('/', 'HomeController@index');
 
 Route::group(['middleware'=>['auth','agent']], function () {
 

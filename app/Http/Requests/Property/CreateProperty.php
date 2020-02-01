@@ -13,7 +13,7 @@ class CreateProperty extends FormRequest
      */
     public function authorize()
     {
-        return auth()->user()->balance >= 100;
+        return auth()->user()->balance >= 100 || true;
     }
 
     /**
@@ -24,7 +24,10 @@ class CreateProperty extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required',
+            'name'=>'required|unique:properties',
+            'purpose'=>'required|in:sale,rent',
+            'price'=>'required|integer',
+            'unit'=>'required',
             'type'=>'in:'.\App\Type::pluck('key')->join(','),
         ];
     }

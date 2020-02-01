@@ -12,7 +12,7 @@ class Property extends Model implements HasMedia
 {
     use SoftDeletes, HasMediaTrait;
 
-    public $fillable = ['name','type'];
+    public $fillable = ['name','type','purpose','price','unit'];
 
 
     public static function boot()

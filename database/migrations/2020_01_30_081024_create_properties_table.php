@@ -18,6 +18,9 @@ class CreatePropertiesTable extends Migration
             $table->integer('user_id');
             $table->string('name');
             $table->string('type');
+            $table->string('purpose');
+            $table->string('price');
+            $table->string('unit');
             $table->boolean('is_featured')->nullable();
             $table->softDeletes();
             $table->timestamps();

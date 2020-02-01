@@ -26,7 +26,6 @@ class SignUp extends FormRequest
         return [
             'email'=>'required|email|unique:users',
             'password'=>'required|min:8',
-            'name'=>'required'
         ];
     }
 }

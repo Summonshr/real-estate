@@ -21,13 +21,13 @@ class PropertyResource extends Controller
     {
         $property = new \App\Property();
 
-        $property->fill($request->only(['name','type']));
+        $property->fill($request->only(['name','type','purpose','unit','price']));
 
         $request->user()->properties()->save($property);
 
         $request->user()->deduct(config('settings.price_per_property'));
 
-        return response('',201);
+        return redirect(route("properties"))->with('alert','success:Property has been added.');
     }
 
     public function show(FetchProperty $request, Property $property)

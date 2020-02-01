@@ -45,4 +45,9 @@ class User extends Authenticatable
     {
         return $this->role === 'agent';
     }
+
+    public function getName()
+    {
+        return $this->name ?? $this->email ?? 'Agent';
+    }
 }

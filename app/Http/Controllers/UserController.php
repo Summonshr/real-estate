@@ -13,23 +13,32 @@ class UserController extends Controller
     public function signin(SignIn $request)
     {
         if(auth()->attempt($request->only(['email','password']))){
-            return response('', 202);
+            return redirect('/');
         }
 
-        return response('', 401);
+        return back()->with('alert','error:Could Not Perform Sign In');
+    }
+
+    public function logout()
+    {
+        auth()->logout();
+
+        return redirect(route('login'));
     }
 
     public function signup(SignUp $request){
 
         $user = new \App\User;
 
-        $user->fill($request->only(['email','name','password']));
+        $user->fill($request->only(['email','password']));
 
         $user->role = 'agent';
 
         $user->save();
 
-        return response('', 201);
+        auth()->login($user);
+
+        return redirect('/');
     }
 
     public function changePassword(ChangePassword $request)

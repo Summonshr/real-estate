@@ -25,7 +25,7 @@ class PropertyResource extends Controller
 
     public function index(ViewProperties $request)
     {
-        return view('app.properties.list');
+        return view('app.properties.component',['component'=>'properties']);
     }
 
     public function store(CreateProperty $request)
@@ -62,5 +62,9 @@ class PropertyResource extends Controller
         $property->delete();
 
         return redirect(route('properties.index'))->with('alert','success: Action Successful');
+    }
+
+    public function photos(){
+            return view('app.properties.component',['component'=>'photos']);
     }
 }

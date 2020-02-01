@@ -1,4 +1,8 @@
 <div>
+<div class="w-full flex justify-between">
+        <a href=""></a>
+        <a href="{{route('properties.create')}}" class="bg-green-300 text-green-900 transition px-4 py-2 rounded hover:bg-green-900 hover:text-green-100">Add New</a>
+    </div>
 <div class="max-w-3xl bg-gray-100 rounded-sm">
     <h3 class="bg-blue-900 text-gray-300 p-2 px-4">My Properties</h3>
     <div class="p-4">
@@ -34,7 +38,7 @@
 	</g>
 </g>
 </svg>
-</a><a href="/">
+</a><a href="{{route('properties.photos', $property)}}">
 
 <svg class="w-4 h-4" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 420.8 420.8" style="enable-background:new 0 0 420.8 420.8;" xml:space="preserve">

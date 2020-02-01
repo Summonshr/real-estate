@@ -14,11 +14,7 @@
         </div>
     </div>
     @else
-    <div class="w-full flex justify-between">
-        <a href=""></a>
-        <a href="{{route('properties.create')}}" class="bg-green-300 text-green-900 transition px-4 py-2 rounded hover:bg-green-900 hover:text-green-100">Add New</a>
-    </div>
-    @livewire('properties')
+        @livewire($component)
     @endif
 </div>
 @endsection

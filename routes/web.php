@@ -23,10 +23,6 @@ Route::group(['middleware'=>['auth']], function () {
 
     Route::view('/','dashboard');
 
-    Route::view('properties','app.properties.list')->name('properties');
-
-    Route::view('properties/create','app.properties.new')->name('properties.new');
-
     Route::view('contacts','app.contacts')->name('contacts');
 
     Route::view('profie','app.profile')->name('profile');

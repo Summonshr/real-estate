@@ -10,13 +10,13 @@
         </div>
         <p class="w-full text-center text-gray-700 font-semibold">You have no properties as of now.</p>
         <div class="w-full flex justify-center">
-            <a class="bg-gray-700 text-gray-100 px-4 py-2 w-24 mx-auto" href="{{route('properties.new')}}">Add one</a>
+            <a class="bg-gray-700 text-gray-100 px-4 py-2 w-24 mx-auto" href="{{route('properties.create')}}">Add one</a>
         </div>
     </div>
     @else
     <div class="w-full flex justify-between">
         <a href=""></a>
-        <a href="{{route('properties.new')}}" class="bg-green-300 text-green-900 transition px-4 py-2 rounded hover:bg-green-900 hover:text-green-100">Add New</a>
+        <a href="{{route('properties.create')}}" class="bg-green-300 text-green-900 transition px-4 py-2 rounded hover:bg-green-900 hover:text-green-100">Add New</a>
     </div>
     @livewire('properties')
     @endif

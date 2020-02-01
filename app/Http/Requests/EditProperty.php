@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Property;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateProperty extends FormRequest
+class EditProperty extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class UpdateProperty extends FormRequest
      */
     public function authorize()
     {
-        return $this->route('property')->user_id == auth()->id();
+        return $this->route('property')->isAccessible(auth()->user());
     }
 
     /**
@@ -24,11 +24,7 @@ class UpdateProperty extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'type' => 'in:' . \App\Type::pluck('key')->join(','),
-            'unit' => 'required',
-            'price' => "required|integer",
-            'purpose' => 'required'
+            //
         ];
     }
 }

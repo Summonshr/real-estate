@@ -6,7 +6,7 @@
             <h2 class="w-full p-4 bg-gray-900">Logo|Site Title</h2>
             <div class="sidebar-list">
                 <ul class="list-reset p-4">
-                    <li><a href="{{route('properties')}}" class="bg-gray-800 block p-2 rounded-lg">Properties</a></li>
+                    <li><a href="{{route('properties.index')}}" class="bg-gray-800 block p-2 rounded-lg">Properties</a></li>
                     <li><a href="{{route('contacts')}}" class=" block p-2 rounded-lg">Contacts</a></li>
                     <li><a href="{{route('profile')}}" class=" block p-2 rounded-lg">Profile</a></li>
                     <li><a href="{{route('logout')}}" class=" block p-2 rounded-lg">Log Out</a></li>

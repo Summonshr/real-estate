@@ -17,9 +17,9 @@
     </div>
 </body>
 
-@if($alert ?? '')
+@if(session('alert') ?? '')
     <script>
-        alert('{{$alert}}')
+        alert('{{session('alert')}}')
     </script>
 @endif
 @livewireScripts

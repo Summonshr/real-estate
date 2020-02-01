@@ -9,9 +9,9 @@ class Properties extends Component
 {
     use WithPagination;
 
-    public $order = 'asc';
+    public $order = 'desc';
 
-    public $sortBy = 'created_at';
+    public $sortBy = 'updated_at';
 
     public $perPage = 5;
 

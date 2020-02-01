@@ -23,7 +23,7 @@ class CreateProperty extends FormRequest
      */
     public function rules()
     {
-        return [
+        return $this->method('GET') ? [] : [
             'name'=>'required|unique:properties',
             'purpose'=>'required|in:sale,rent',
             'price'=>'required|integer',

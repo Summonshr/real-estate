@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EditProperty;
 use App\Http\Requests\Property\CreateProperty;
 use App\Http\Requests\Property\DeleteProperty;
 use App\Http\Requests\Property\FetchProperty;
@@ -12,9 +13,19 @@ use App\Property;
 class PropertyResource extends Controller
 {
 
+    public function create(CreateProperty $request, Property $property)
+    {
+        return view('app.properties.new',['property'=>$property]);
+    }
+
+    public function edit(EditProperty $request, Property $property)
+    {
+        return view('app.properties.new',['property'=>$property]);
+    }
+
     public function index(ViewProperties $request)
     {
-        return $request->user()->properties()->with('tags')->get();
+        return view('app.properties.list');
     }
 
     public function store(CreateProperty $request)
@@ -27,7 +38,7 @@ class PropertyResource extends Controller
 
         $request->user()->deduct(config('settings.price_per_property'));
 
-        return redirect(route("properties"))->with('alert','success:Property has been added.');
+        return redirect(route("properties.index"))->with('alert','success:Property has been added.');
     }
 
     public function show(FetchProperty $request, Property $property)
@@ -40,9 +51,9 @@ class PropertyResource extends Controller
 
     public function update(UpdateProperty $request, Property $property)
     {
-        $property->fill($request->only(['name','type']))->save();
+        $property->fill($request->only(['name','type','unit','price','purpose']))->save();
 
-        return response('',202);
+        return redirect(route('properties.index'))->with('alert','success: Action Successful');
     }
 
 
@@ -50,6 +61,6 @@ class PropertyResource extends Controller
     {
         $property->delete();
 
-        return response('',202);
+        return redirect(route('properties.index'))->with('alert','success: Action Successful');
     }
 }

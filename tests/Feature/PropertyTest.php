@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Property;
 use Tests\TestCase;
 
 class PropertyTest extends TestCase

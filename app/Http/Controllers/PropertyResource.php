@@ -13,7 +13,7 @@ use App\Property;
 class PropertyResource extends Controller
 {
 
-    public function create(CreateProperty $request, Property $property)
+    public function create( Property $property)
     {
         return view('app.properties.new',['property'=>$property]);
     }

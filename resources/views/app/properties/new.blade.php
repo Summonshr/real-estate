@@ -21,15 +21,15 @@
                     <div class="p-2 w-full">
                         <label for="purpose" class="w-full mr-4">Purpose: </label>
                         <span class="mr-4">
-                            <input x-model="purpose" class="align-middle w-4 h-4" name="purpose" type="radio" value="sale" id="sale"> <span>For Sale</span>
+                            <input required x-model="purpose" class="align-middle w-4 h-4" name="purpose" type="radio" value="sale" id="sale"> <span>For Sale</span>
                         </span>
                         <span class="mr-4">
-                            <input x-model="purpose" class="align-middle w-4 h-4" name="purpose" type="radio" value="rent" id="rent"> <span>For Rent</span>
+                            <input required x-model="purpose" class="align-middle w-4 h-4" name="purpose" type="radio" value="rent" id="rent"> <span>For Rent</span>
                         </span>
                     </div>
                     <div class="p-2 w-1/3">
                         <label for="type">Type</label>
-                        <select x-model="type" name="type" required class="w-full @error('type') border-2 border-red-500 @else border @enderror p-2">
+                        <select required x-model="type" name="type" required class="w-full @error('type') border-2 border-red-500 @else border @enderror p-2">
                             <option value="">Select an type</option>
                             @foreach(\App\Type::all() as $type)
                             <option value="{{$type->key}}">{{ucfirst($type->key)}}</option>
@@ -38,12 +38,12 @@
                     </div>
                     <div class="p-2 w-1/3">
                         <label for="price">Price</label>
-                        <input x-model="price" type="text" required name="price" class="@error('price') border-2 border-red-500 @else border @enderror p-2 w-full">
+                        <input required x-model="price" type="text" required name="price" class="@error('price') border-2 border-red-500 @else border @enderror p-2 w-full">
                     </div>
                     <div class="p-2 w-1/3">
                         <label for="unit">Unit</label>
                         <template x-if="purpose=='rent'">
-                            <select x-model="unit" name="unit" class="w-full @error('unit') border-2 border-red-500 @else border @enderror p-2">
+                            <select required x-model="unit" name="unit" class="w-full @error('unit') border-2 border-red-500 @else border @enderror p-2">
                                 <option value="">Select a unit</option>
                                 <option value="month">per Month</option>
                                 <option value="year">per Year</option>
@@ -52,7 +52,7 @@
                             </select>
                         </template>
                         <template x-if="purpose=='sale'">
-                            <select x-model="unit" name="unit" class="w-full @error('unit') border-2 border-red-500 @else border @enderror p-2">
+                            <select required x-model="unit" name="unit" class="w-full @error('unit') border-2 border-red-500 @else border @enderror p-2">
                                 <option value="">Select a unit</option>
                                 <option value="aana">per Aana</option>
                                 <option value="ropani">per Ropani</option>

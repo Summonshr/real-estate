@@ -9,6 +9,7 @@ $factory->define(User::class, function (Faker $faker) {
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'phone'=> $faker->phoneNumber,
+        'balance'=>200,
         'role'=>'agent',
         'email_verified_at' => now(),
         'password' => 'password', // password

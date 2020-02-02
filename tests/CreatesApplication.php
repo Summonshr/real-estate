@@ -35,32 +35,11 @@ trait CreatesApplication
     {
         parent::tearDown();
 
-        $this->deleteFilesWithIn('./storage/app/public');
-
     }
 
-    public function deleteFilesWithIn($path)
+    public function addProperty($status = 302)
     {
-        $files = glob($path.'/*');
-
-        foreach ($files as $file) {
-
-            if(is_dir($file)){
-
-                $this->deleteFilesWithIn($file);
-
-                rmdir($file);
-            }
-
-            if(is_file($file)){
-                unlink($file);
-            }
-        }
-    }
-
-    public function addProperty($status = 201)
-    {
-        $this->post('/properties', ['name' => 'New Property', 'type' => 'land'])->assertStatus($status);
+        $this->post('/properties', ['name' => \Str::random(8), 'type' => 'land','purpose'=>'sale','price'=>10000,'unit'=>'aana'])->assertStatus($status);
 
         return $this;
     }

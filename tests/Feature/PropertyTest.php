@@ -22,7 +22,7 @@ class PropertyTest extends TestCase
 
         $this->assertTrue($balance - 100 === auth()->user()->balance * 1);
 
-        $this->assertDatabaseHas('properties', ['name' => 'New Property']);
+        $this->assertCount(1, \App\Property::all());
 
         $this->addProperty();
 
@@ -34,80 +34,8 @@ class PropertyTest extends TestCase
 
     }
 
-    /**
-     * Assert Test is returning the required data
-     */
-    public function testReturnData()
-    {
-        $this->login();
 
-        $this->addProperty();
 
-        $response = $this->get('/properties')->assertStatus(200);
-
-        $response->assertJson([['name'=>'New Property']]);
-
-        $response->assertJson([['user_id'=>auth()->id()]]);
-
-        $response->assertJsonMissing([['user_id'=>auth()->id() + 1]]);
-
-        $this->get('/properties/1')->assertStatus(200);
-
-        $this->loginSecondUser();
-
-        $this->addProperty();
-
-        $this->get('/properties/1')->assertStatus(403);
-
-        $this->get('/properties/4')->assertStatus(404);
-
-        $response = $this->get('/properties')->assertStatus(200);
-
-        $response->assertJson([['name'=>'New Property']]);
-
-        $response->assertJson([['user_id'=>auth()->id()]]);
-
-        $response->assertJsonMissing([['user_id'=>auth()->id() + 1]]);
-
-    }
-    /**
-     * Test If property gets inserted.
-     *
-     * @return void
-     */
-    public function testEditable()
-    {
-        $this->login();
-
-        $this->addProperty();
-
-        $this->put('properties/4',['name'=>'Property that does not exists'])->assertStatus(404);
-
-        $this->loginSecondUser();
-
-        $this->addProperty();
-
-        $this->login();
-
-        $this->put('properties/2',['name'=>'Property that this user does nto have access to'])->assertStatus(403);
-
-        $this->put('properties/1',['name'=>'New Property Edited'])->assertStatus(202);
-
-        $this->assertDatabaseHas('properties', ['name' => 'New Property Edited','type'=>'land']);
-
-        $this->put('properties/1',['name'=>'New Property Edited Again', 'type'=>'house'])->assertStatus(202);
-
-        $this->assertDatabaseHas('properties', ['name' => 'New Property Edited Again','type'=>'house']);
-
-        $this->put('properties/2',['name'=>'New Vertical Algined Properties','type'=>'land'])->assertStatus(403);
-
-        $this->loginSecondUser();
-
-        $this->put('properties/2',['name'=>'New Vertical Algined Properties','type'=>'house'])->assertStatus(202);
-
-        $this->assertDatabaseHas('properties', ['id'=>'2', 'name' => 'New Vertical Algined Properties','type'=>'house']);
-
-    }
 
     /**
      * Test if property gets deleted
@@ -121,7 +49,7 @@ class PropertyTest extends TestCase
 
         $this->login();
 
-        $this->delete('properties/1')->assertStatus(202);
+        $this->delete('properties/1')->assertStatus(302);
 
         $this->assertSoftDeleted('properties',['id'=>"1"]);
 

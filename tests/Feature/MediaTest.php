@@ -24,7 +24,7 @@ class MediaTest extends TestCase
 
         $thumb = 'test-'.$random.'-thumb.jpg';
 
-        $this->post('/properties/1/media',['file'=>new UploadedFile(storage_path('test.jpg'),$filename)])->assertStatus(201);
+        $this->post('/properties/1/media',['file'=>new UploadedFile(storage_path('test.jpg'),$filename)])->assertStatus(302);
 
         $this->assertFileExists(storage_path('app/public/1/'.$filename));
 

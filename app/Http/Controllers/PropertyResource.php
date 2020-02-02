@@ -64,7 +64,7 @@ class PropertyResource extends Controller
         return redirect(route('properties.index'))->with('alert','success: Property Deleted.');
     }
 
-    public function photos(Property $property){
-            return view('app.properties.component',['component'=>'photos','property'=>$property]);
+    public function media(Property $property){
+            return view('app.properties.component',['component'=>'medias','property'=>$property]);
     }
 }

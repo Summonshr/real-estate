@@ -13,7 +13,7 @@ Route::group(['middeware'=>'guest'], function(){
 
 Route::group(['middleware'=>['auth']], function () {
 
-    Route::get('property-meta/{property}/photos','PropertyResource@photos')->name('properties.photos');
+    Route::get('property-meta/{property}/media','PropertyResource@media')->name('properties.media');
 
     Route::resource('properties', 'PropertyResource');
 

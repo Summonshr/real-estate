@@ -28,6 +28,10 @@ class Properties extends Component
         }
     }
 
+    public function destroy($propertyId) {
+        auth()->user()->properties()->findOrFail($propertyId)->delete();
+    }
+
     public function render()
     {
         $display = $this->display;

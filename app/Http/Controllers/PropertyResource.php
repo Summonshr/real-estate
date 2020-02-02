@@ -53,7 +53,7 @@ class PropertyResource extends Controller
     {
         $property->fill($request->only(['name','type','unit','price','purpose']))->save();
 
-        return redirect(route('properties.index'))->with('alert','success: Action Successful');
+        return redirect(route('properties.index'))->with('alert','success: Property Updated.');
     }
 
 
@@ -61,10 +61,10 @@ class PropertyResource extends Controller
     {
         $property->delete();
 
-        return redirect(route('properties.index'))->with('alert','success: Action Successful');
+        return redirect(route('properties.index'))->with('alert','success: Property Deleted.');
     }
 
-    public function photos(){
-            return view('app.properties.component',['component'=>'photos']);
+    public function photos(Property $property){
+            return view('app.properties.component',['component'=>'photos','property'=>$property]);
     }
 }

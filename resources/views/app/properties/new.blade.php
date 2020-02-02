@@ -9,8 +9,8 @@
             <hr class="mx-2">
             <form method="POST" action="{{route($property->exists ? 'properties.update' : 'properties.store', $property)}}">
                 @csrf
-                @if($property->exists())
-                @method('PUT')
+                @if($property->exists)
+                    @method('PUT')
                 @endif
                 <div class="flex flex-wrap">
                     <div class="p-2 w-full">

@@ -18,9 +18,15 @@
 </body>
 
 @if(session('alert') ?? '')
-    <script>
-        alert('{{session('alert')}}')
-    </script>
+<script src="/toast.js"></script>
+<script defer>
+    Toastify({
+        text: "{{session('alert')}}".split(':').pop(),
+        duration: 3000
+    }).showToast();
+</script>
 @endif
 @livewireScripts
+@stack('scripts')
+
 </html>

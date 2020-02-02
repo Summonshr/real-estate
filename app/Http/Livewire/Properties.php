@@ -9,6 +9,10 @@ class Properties extends Component
 {
     use WithPagination;
 
+    public $search = '';
+
+    public $display = 'all';
+
     public $order = 'desc';
 
     public $sortBy = 'updated_at';
@@ -26,7 +30,19 @@ class Properties extends Component
 
     public function render()
     {
-        $properties = auth()->user()->properties()->orderBy($this->sortBy, $this->order)->paginate($this->perPage);
+        $display = $this->display;
+
+        $properties = auth()->user()->properties()->when($this->display !== 'all', function($query) use ($display) {
+            if($this->display === 'with-trashed') {
+                $query = $query->withTrashed();
+            }
+            if($this->display === 'only-trashed') {
+                $query = $query->onlyTrashed();
+            }
+            return $query;
+        })->when($this->search !== '', function($query){
+            $query->where('name','like','%'.$this->search.'%');
+        })->orderBy($this->sortBy, $this->order)->paginate($this->perPage);
 
         return view('livewire.properties',['properties'=>$properties]);
     }

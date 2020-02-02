@@ -13,7 +13,6 @@ class CreateMedia extends FormRequest
      */
     public function authorize()
     {
-        logger($this->route('property'));
         return $this->route('property')->isAccessible();
     }
 

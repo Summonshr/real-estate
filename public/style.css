@@ -40,14 +40,11 @@ abbr[title] {
     text-decoration: underline dotted
 }
 
-b,
-strong {
+b, strong {
     font-weight: bolder
 }
 
-code,
-kbd,
-samp {
+code, kbd, samp {
     font-family: monospace, monospace;
     font-size: 1em
 }
@@ -56,8 +53,7 @@ small {
     font-size: 80%
 }
 
-sub,
-sup {
+sub, sup {
     font-size: 75%;
     line-height: 0;
     position: relative;
@@ -76,46 +72,31 @@ img {
     border-style: none
 }
 
-button,
-input,
-optgroup,
-select,
-textarea {
+button, input, optgroup, select, textarea {
     font-family: inherit;
     font-size: 100%;
     line-height: 1.15;
     margin: 0
 }
 
-button,
-input {
+button, input {
     overflow: visible
 }
 
-button,
-select {
+button, select {
     text-transform: none
 }
 
-[type=button],
-[type=reset],
-[type=submit],
-button {
+[type=button], [type=reset], [type=submit], button {
     -webkit-appearance: button
 }
 
-[type=button]::-moz-focus-inner,
-[type=reset]::-moz-focus-inner,
-[type=submit]::-moz-focus-inner,
-button::-moz-focus-inner {
+[type=button]::-moz-focus-inner, [type=reset]::-moz-focus-inner, [type=submit]::-moz-focus-inner, button::-moz-focus-inner {
     border-style: none;
     padding: 0
 }
 
-[type=button]:-moz-focusring,
-[type=reset]:-moz-focusring,
-[type=submit]:-moz-focusring,
-button:-moz-focusring {
+[type=button]:-moz-focusring, [type=reset]:-moz-focusring, [type=submit]:-moz-focusring, button:-moz-focusring {
     outline: 1px dotted ButtonText
 }
 
@@ -140,14 +121,12 @@ textarea {
     overflow: auto
 }
 
-[type=checkbox],
-[type=radio] {
+[type=checkbox], [type=radio] {
     box-sizing: border-box;
     padding: 0
 }
 
-[type=number]::-webkit-inner-spin-button,
-[type=number]::-webkit-outer-spin-button {
+[type=number]::-webkit-inner-spin-button, [type=number]::-webkit-outer-spin-button {
     height: auto
 }
 
@@ -186,25 +165,11 @@ html {
     font-family: sans-serif
 }
 
-*,
-::after,
-::before {
+*, ::after, ::before {
     box-sizing: inherit
 }
 
-blockquote,
-dd,
-dl,
-figure,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-hr,
-p,
-pre {
+blockquote, dd, dl, figure, h1, h2, h3, h4, h5, h6, hr, p, pre {
     margin: 0
 }
 
@@ -223,8 +188,7 @@ fieldset {
     padding: 0
 }
 
-ol,
-ul {
+ol, ul {
     list-style: none;
     margin: 0;
     padding: 0
@@ -235,9 +199,7 @@ html {
     line-height: 1.5
 }
 
-*,
-::after,
-::before {
+*, ::after, ::before {
     border-width: 0;
     border-style: solid;
     border-color: #e2e8f0
@@ -255,23 +217,19 @@ textarea {
     resize: vertical
 }
 
-input:-ms-input-placeholder,
-textarea:-ms-input-placeholder {
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     color: #a0aec0
 }
 
-input::-ms-input-placeholder,
-textarea::-ms-input-placeholder {
+input::-ms-input-placeholder, textarea::-ms-input-placeholder {
     color: #a0aec0
 }
 
-input::placeholder,
-textarea::placeholder {
+input::placeholder, textarea::placeholder {
     color: #a0aec0
 }
 
-[role=button],
-button {
+[role=button], button {
     cursor: pointer
 }
 
@@ -279,12 +237,7 @@ table {
     border-collapse: collapse
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
     font-size: inherit;
     font-weight: inherit
 }
@@ -294,37 +247,22 @@ a {
     text-decoration: inherit
 }
 
-button,
-input,
-optgroup,
-select,
-textarea {
+button, input, optgroup, select, textarea {
     padding: 0;
     line-height: inherit;
     color: inherit
 }
 
-code,
-kbd,
-pre,
-samp {
+code, kbd, pre, samp {
     font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace
 }
 
-audio,
-canvas,
-embed,
-iframe,
-img,
-object,
-svg,
-video {
+audio, canvas, embed, iframe, img, object, svg, video {
     display: block;
     vertical-align: middle
 }
 
-img,
-video {
+img, video {
     max-width: 100%;
     height: auto
 }
@@ -37656,4 +37594,75 @@ video {
 .pagination-sm .page-item:last-child .page-link {
     border-top-right-radius: .2rem;
     border-bottom-right-radius: .2rem
+}
+
+.toastify {
+    padding: 12px 20px;
+    color: #fff;
+    display: inline-block;
+    box-shadow: 0 3px 6px -1px rgba(0, 0, 0, .12), 0 10px 36px -4px rgba(77, 96, 232, .3);
+    background: -webkit-linear-gradient(315deg, #73a5ff, #5477f5);
+    background: linear-gradient(135deg, #73a5ff, #5477f5);
+    position: fixed;
+    opacity: 0;
+    transition: all .4s cubic-bezier(.215, .61, .355, 1);
+    border-radius: 2px;
+    cursor: pointer;
+    text-decoration: none;
+    max-width: calc(50% - 20px);
+    z-index: 2147483647
+}
+
+.toastify.on {
+    opacity: 1
+}
+
+.toast-close {
+    opacity: .4;
+    padding: 0 5px
+}
+
+.toastify-right {
+    right: 15px
+}
+
+.toastify-left {
+    left: 15px
+}
+
+.toastify-top {
+    top: -150px
+}
+
+.toastify-bottom {
+    bottom: -150px
+}
+
+.toastify-rounded {
+    border-radius: 25px
+}
+
+.toastify-avatar {
+    width: 1.5em;
+    height: 1.5em;
+    margin: 0 5px;
+    border-radius: 2px
+}
+
+.toastify-center {
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    max-width: fit-content
+}
+
+@media only screen and (max-width:360px) {
+    .toastify-left, .toastify-right {
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        max-width: fit-content
+    }
 }

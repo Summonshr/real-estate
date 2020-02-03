@@ -28,3 +28,11 @@ $factory->define(\App\Property::class, function (Faker $faker) {
         'price'=>$faker->randomDigit*1000
     ];
 });
+
+$factory->define(\App\Theme::class, function($faker){
+    return [
+        'name'=>$faker->company,
+        'description'=>$faker->realText,
+        'image_url'=>'https://placekitten.com/'. collect([360,361,362,363,364,365,366,359,358,357,356,355])->shuffle()->take(2)->join('/')
+    ];
+});

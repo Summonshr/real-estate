@@ -7,6 +7,8 @@
         <div class="sidebar-list">
             <ul class="list-reset p-4">
                 <li><a href="{{route('properties.index')}}" class="@if(url()->current() === route('properties.index')) bg-gray-800  @endif block p-2 rounded-lg">Properties</a></li>
+                <li><a href="{{route('themes.index')}}" class="@if(url()->current() === route('themes.index')) bg-gray-800  @endif block p-2 rounded-lg">Themes</a></li>
+                <li><a href="{{route('recharge')}}" class="@if(url()->current() === route('recharge')) bg-gray-800  @endif block p-2 rounded-lg">Recharge</a></li>
             </ul>
         </div>
     </div>

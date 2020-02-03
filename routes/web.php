@@ -23,6 +23,8 @@ Route::group(['middleware'=>['auth']], function () {
 
     Route::resource('properties.media', 'MediaResource');
 
+    Route::resource('themes','ThemeResource');
+
     Route::view('/','dashboard');
 
     Route::post('profile-picture','UserController@profiePic')->name('profile-picture');
@@ -33,10 +35,7 @@ Route::group(['middleware'=>['auth']], function () {
 
     Route::post('recharge','UserController@recharge')->name('recharge');
 
-    Route::get('recharge',function(){
-        auth()->user()->recharge(100);
-        return back()->with('alert','success: Recharged Successfully');
-    });
+    Route::view('recharge','default')->name('recharge');
 
     Route::post('change-password', 'UserController@changePassword');
 

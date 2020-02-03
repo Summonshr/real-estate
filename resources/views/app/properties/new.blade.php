@@ -69,10 +69,12 @@
                     </div>
                 </div>
             </form>
-            <form x-ref="delete" action="{{route('properties.destroy', $property)}}" method="POST">
+            @if($property->exists)
+            <form class="hidden" x-ref="delete" action="{{route('properties.destroy', $property)}}" method="POST">
                 @method('delete')
                 @csrf
             </form>
+            @endif
         </div>
     </div>
 </div>

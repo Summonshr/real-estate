@@ -72,13 +72,13 @@ class UserController extends Controller
         $coupon = Coupon::where('code', $request->get('code'))->first();
 
         if($coupon->isVoid()) {
-            return response('', 410);
+            return back()->with('alert','error: Coupon not valid anymore.');
         }
 
         $coupon->setUsed();
 
         $request->user()->recharge($coupon->amount);
 
-        return response('', 202);
+        return back()->with('alert','success: Recharged successfully.');
     }
 }

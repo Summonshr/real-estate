@@ -34,8 +34,8 @@
                     </tr>
                     @endif
                     @foreach($properties as $property)
-                    <tr class="border-b" wire:key="{{$property->id}}">
-                        <td class="text-gray-800 p-2 ">{{$property->name}}</td>
+                    <tr class="border-b @if($loop->even) bg-blue-100 @endif" wire:key="{{$property->id}}">
+                        <td class="text-gray-800 p-2 "><a class="text-blue-800 font-semibold" href="{{route('properties.show',$property)}}">{{$property->name}}</a></td>
                         <td class="text-gray-800 p-2 ">{{$property->type}}</td>
                         <td class="text-gray-800 p-2 ">{{$property->purpose}}</td>
                         <td class="text-gray-800 p-2 text-right">Rs. {{$property->price}}/{{$property->unit}}</td>

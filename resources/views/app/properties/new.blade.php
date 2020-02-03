@@ -62,12 +62,16 @@
                     <div class="w-full p-2">
                         <button class="@if($property->exists) bg-green-800 text-green-100  hover:bg-green-700 @else bg-blue-800 text-gray-100 hover:bg-blue-700 @endif p-2 mr-2 px-4 rounded" type="submit">{{$property->exists ? 'Update' : 'Add'}}</button>
                         @if($property->exists)
-                            <button type="button" class="text-red-800">Trash</button>
+                            <button type="button" x-on:click="confirm('Are you sure') && $refs.delete.submit()" class="text-red-800">Trash</button>
                         @else
                             <button class=" p-2 px-4 text-red-800 rounded outline-none" type="reset">Clear</button>
                         @endif
                     </div>
                 </div>
+            </form>
+            <form x-ref="delete" action="{{route('properties.destroy', $property)}}" method="POST">
+                @method('delete')
+                @csrf
             </form>
         </div>
     </div>

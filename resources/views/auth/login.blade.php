@@ -9,11 +9,11 @@
                 @csrf
                 <div class="mb-4">
                     <label class="font-bold text-grey-darker block mb-2">Email</label>
-                    <input type="text" value="{{old('email')}}" required name="email" class="block appearance-none w-full bg-white border border-grey-light hover:border-grey px-2 py-2 rounded shadow" placeholder="Your Email">
+                    <input type="text" value="{{old('email',\App\User::first()->email)}}" required name="email" class="block appearance-none w-full bg-white border border-grey-light hover:border-grey px-2 py-2 rounded shadow" placeholder="Your Email">
                 </div>
                 <div class="mb-4">
                     <label class="font-bold text-grey-darker block mb-2">Password</label>
-                    <input type="password" required name="password" class="block appearance-none w-full bg-white border border-grey-light hover:border-grey px-2 py-2 rounded shadow" placeholder="Your Password">
+                    <input type="password" value="password" required name="password" class="block appearance-none w-full bg-white border border-grey-light hover:border-grey px-2 py-2 rounded shadow" placeholder="Your Password">
                 </div>
                 <div class="flex items-center justify-between">
                     <button class="bg-teal-800 hover:bg-teal text-white font-bold py-2 px-4 rounded">

@@ -25,9 +25,11 @@ Route::group(['middleware'=>['auth']], function () {
 
     Route::view('/','dashboard');
 
-    Route::view('contacts','app.contacts')->name('contacts');
+    Route::post('profile-picture','UserController@profiePic')->name('profile-picture');
 
-    Route::view('profie','app.profile')->name('profile');
+    Route::view('profile','default')->name('profile');
+
+    Route::post('profile','UserController@updateProfile')->name('profile.update');
 
     Route::post('recharge','UserController@recharge')->name('recharge');
 

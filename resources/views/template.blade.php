@@ -52,7 +52,9 @@
                     <span class="text-gray-600 font-normal uppercase text-base">Balance</>
                         <br>
                         <span class="font-extrabold text-gray-700 text-green-800 text-3xl align-middle">Rs. {{auth()->user()->balance}}</span>
+                        @if(route('recharge') !== url()->current())
                         <a href="{{route('recharge')}}" class="py-1 align-middle hover:bg-green-800 bg-green-200 hover:text-green-200 text-green-800 text-xs rounded-full px-4">Recharge</a>
+                        @endif
                 </p>
             </div>
         </header>

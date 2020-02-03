@@ -9,7 +9,7 @@
             <form method="POST" action="{{route('recharge')}}" class="w-full flex flex-wrap my-2">
                 @csrf
                 <div class="w-3/4 pr-1">
-                    <input wire:model='code' name="code" value="{{old('code')}}" type="text" class="px-2 py-1 w-full uppercase font-bold text-green-800 bg-gray-300 font-bold border border-gray-500 mx-auto">
+                    <input placeholder="Enter Coupon Code" wire:model='code' name="code" value="{{old('code')}}" type="text" class="px-2 py-1 w-full uppercase font-bold text-green-800 bg-gray-300 font-bold border border-gray-500 mx-auto">
                 </div>
                 <div class="w-1/4 pl-2">
                     <button @if($error) disabled @endif class="text-green-900 hover:text-green-200 font-bold bg-green-300 hover:bg-green-800 block w-full h-full">Apply</button>

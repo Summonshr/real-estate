@@ -8,6 +8,7 @@
             <ul class="list-reset p-4">
                 <li><a href="{{route('properties.index')}}" class="@if(url()->current() === route('properties.index')) bg-gray-800  @endif block p-2 rounded-lg">Properties</a></li>
                 <li><a href="{{route('themes.index')}}" class="@if(url()->current() === route('themes.index')) bg-gray-800  @endif block p-2 rounded-lg">Themes</a></li>
+                <li><a href="{{route('sites.index')}}" class="@if(url()->current() === route('sites.index')) bg-gray-800  @endif block p-2 rounded-lg">Sites</a></li>
                 <li><a href="{{route('recharge')}}" class="@if(url()->current() === route('recharge')) bg-gray-800  @endif block p-2 rounded-lg">Recharge</a></li>
             </ul>
         </div>
@@ -33,17 +34,17 @@
             <div class="px-4 py-2 flex flex-wrap justify-between">
                 <div class="flex flex-wrap justify-between flex-1 flex-grow max-w-xs pt-2">
                     <p class="">
-                        <span class="text-gray-600 font-normal uppercase" >Phone Number</span>
+                        <span class="text-gray-600 font-normal uppercase">Phone Number</span>
                         <br>
                         <span class="font-semibold text-gray-700">{{auth()->user()->phone ?? 9841145614}}</span>
                     </p>
                     <p class="">
-                        <span class="text-gray-600 font-normal uppercase" >Type</span>
+                        <span class="text-gray-600 font-normal uppercase">Type</span>
                         <br>
                         <span class="font-semibold text-gray-700">{{ucfirst(auth()->user()->role)}}</span>
                     </p>
                     <p class="">
-                        <span class="text-gray-600 font-normal uppercase" >Joined at</span>
+                        <span class="text-gray-600 font-normal uppercase">Joined at</span>
                         <br>
                         <span class="font-semibold text-gray-700">{{auth()->user()->created_at->toFormattedDateString()}}</span>
                     </p>

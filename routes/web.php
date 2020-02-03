@@ -23,6 +23,8 @@ Route::group(['middleware'=>['auth']], function () {
 
     Route::resource('properties.media', 'MediaResource');
 
+    Route::resource('sites','SiteResource');
+
     Route::resource('themes','ThemeResource');
 
     Route::view('/','dashboard');

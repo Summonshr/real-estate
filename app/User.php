@@ -54,4 +54,19 @@ class User extends Authenticatable implements HasMedia
     {
         return $this->name ?? $this->email ?? 'Agent';
     }
+
+    public function sites()
+    {
+        return $this->hasMany(Site::class);
+    }
+
+    public function hasNoBalance()
+    {
+        return $this->balance < 100;
+    }
+
+    public function hasEnoughBalance()
+    {
+        return $this->balance >= 100;
+    }
 }

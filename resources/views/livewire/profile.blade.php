@@ -30,13 +30,18 @@
         <div class="w-1/3 border-2 border-gray-900 border-dashed h-48 flex items-center justify-center relative">
             <form action="{{route('profile-picture')}}" class="z-20 w-full h-full block" enctype="multipart/form-data" method="POST">
                 @csrf
-                <label for="file" class="w-full h-full block flex items-center justify-center">
+                <label for="file" class="w-full h-full block flex items-center justify-center text-blue-900 text-2xl">
+                    @if(!$image)
+                    Profile Picture
+                    @endif
                     <input type="file" id="file" name="file" class="hidden" onchange="this.form.submit()">
                 </label>
             </form>
-            <div class="absolute z-10 h-full w-full profile-image">
+            @if($image)
+            <div class="absolute z-10 block h-full w-full profile-image">
                 {{$image}}
             </div>
+            @endif
         </div>
     </div>
 </div>

@@ -20,7 +20,7 @@ class CreateSitesTable extends Migration
             $table->integer('user_id');
             $table->text('custom_css')->nullable();
             $table->text('custom_js')->nullable();
-            $table->string('theme_id')->nullable();
+            $table->integer('theme_id')->nullable();
             $table->timestamp('disabled_at')->nullable();
             $table->softDeletes();
             $table->timestamps();

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Site\CreateSite;
+use App\Http\Requests\Site\DeleteSite;
+use App\Http\Requests\Site\UpdateSite;
 use App\Site;
 use Illuminate\Http\Request;
 
@@ -51,9 +53,9 @@ class SiteResource extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Site $site)
     {
-        //
+        return view('app.sites.new', ['site'=>$site]);
     }
 
     /**
@@ -74,9 +76,11 @@ class SiteResource extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateSite $request, Site $site)
     {
-        //
+        $site->update($request->only(['name','url','theme_id']));
+
+        return redirect(route('sites.index'));
     }
 
     /**
@@ -85,8 +89,10 @@ class SiteResource extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(DeleteSite $request, Site $site)
     {
-        //
+        $site->delete();
+
+        return redirect(route('sites.index'));
     }
 }

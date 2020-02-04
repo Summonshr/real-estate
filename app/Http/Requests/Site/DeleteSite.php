@@ -13,7 +13,7 @@ class DeleteSite extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return $this->route('site')->user_id === auth()->id();
     }
 
     /**

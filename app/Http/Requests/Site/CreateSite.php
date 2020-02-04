@@ -24,7 +24,8 @@ class CreateSite extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'=>'required',
+            'url'=>'required|url'
         ];
     }
 }

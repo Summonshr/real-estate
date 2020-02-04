@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Site;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateSite extends FormRequest
 {
@@ -13,7 +14,7 @@ class UpdateSite extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return $this->route('site') && $this->route('site')->user_id === auth()->id();
     }
 
     /**
@@ -24,7 +25,9 @@ class UpdateSite extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'=>'required',
+            'url'=>['required','url', Rule::unique('sites')->ignore($this->route('site')->id)],
+            'theme_id'=>'required|exists:themes,id'
         ];
     }
 }

@@ -7,7 +7,7 @@
         <h3 class="w-full px-2 pb-1 text-blue-700 font-semibold">New property</h3>
         <div class="">
             <hr class="mx-2">
-            <form method="POST" action="{{route($property->exists ? 'properties.update' : 'properties.store', $property)}}">
+            <form x-on:submit="$refs.submit.disabled = true" method="POST" action="{{route($property->exists ? 'properties.update' : 'properties.store', $property)}}">
                 @csrf
                 @if($property->exists)
                     @method('PUT')
@@ -60,11 +60,11 @@
                         </template>
                     </div>
                     <div class="w-full p-2">
-                        <button class="@if($property->exists) bg-green-800 text-green-100  hover:bg-green-700 @else bg-blue-800 text-gray-100 hover:bg-blue-700 @endif p-2 mr-2 px-4 rounded" type="submit">{{$property->exists ? 'Update' : 'Add'}}</button>
+                        <button x-ref="submit" class="@if($property->exists) bg-green-800 text-green-100  hover:bg-green-700 @else bg-blue-800 text-gray-100 hover:bg-blue-700 @endif p-2 mr-2 px-4 rounded" type="submit">{{$property->exists ? 'Update' : 'Add'}}</button>
                         @if($property->exists)
-                            <button type="button" x-on:click="confirm('Are you sure') && $refs.delete.submit()" class="text-red-800">Trash</button>
+                            <button x-ref="trash" type="button" x-on:click="confirm('Are you sure') && $refs.delete.submit()" class="text-red-800">Trash</button>
                         @else
-                            <button class=" p-2 px-4 text-red-800 rounded outline-none" type="reset">Clear</button>
+                            <button x-ref="trash" class=" p-2 px-4 text-red-800 rounded outline-none" type="reset">Clear</button>
                         @endif
                     </div>
                 </div>

@@ -34,9 +34,7 @@ class Properties extends Component
 
     public function render()
     {
-        $display = $this->display;
-
-        $properties = auth()->user()->properties()->when($this->display !== 'all', function($query) use ($display) {
+        $properties = auth()->user()->properties()->when($this->display !== 'all', function($query) {
             if($this->display === 'with-trashed') {
                 $query = $query->withTrashed();
             }

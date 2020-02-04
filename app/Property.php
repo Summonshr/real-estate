@@ -10,7 +10,7 @@ use Spatie\MediaLibrary\Models\Media;
 
 class Property extends Model implements HasMedia
 {
-    use SoftDeletes, HasMediaTrait;
+    use SoftDeletes, HasMediaTrait, \Spatie\Tags\HasTags;
 
     public $fillable = ['name','type','purpose','price','unit'];
 

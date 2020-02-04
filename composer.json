@@ -17,7 +17,8 @@
         "laravel/tinker": "^2.0",
         "livewire/livewire": "^0.7.2",
         "php-ffmpeg/php-ffmpeg": "^0.14.0",
-        "spatie/laravel-medialibrary": "^7.0.0"
+        "spatie/laravel-medialibrary": "^7.0.0",
+        "spatie/laravel-tags": "^2.5"
     },
     "require-dev": {
         "facade/ignition": "^1.4",

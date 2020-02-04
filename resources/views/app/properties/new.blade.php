@@ -2,8 +2,8 @@
 
 @section('main')
 @if(auth()->user()->hasEnoughBalance() || $property->exists)
-<div class="p-8">
-    <div x-data="{name: '{{old('name', $property->name)}}', type: '{{old('type', $property->type)}}', price: '{{old('price', $property->price)}}', unit: '{{old('unit', $property->unit)}}', purpose:'{{old('purpose',$property->purpose ?? 'sale')}}'}" class="bg-gray-100 max-w-xl border rounded-sm p-2">
+<div x-data="{name: '{{old('name', $property->name)}}', type: '{{old('type', $property->type)}}', price: '{{old('price', $property->price)}}', unit: '{{old('unit', $property->unit)}}', purpose:'{{old('purpose',$property->purpose ?? 'sale')}}'}" class="p-8 flex flex-wrap">
+    <div class="bg-gray-100 max-w-md border rounded-sm p-2">
         <h3 class="w-full px-2 pb-1 text-blue-700 font-semibold">New property</h3>
         <div class="">
             <hr class="mx-2">
@@ -75,8 +75,14 @@
                 @csrf
             </form>
             @endif
+
         </div>
     </div>
+    @if($property->exists)
+    <div class="px-4 flex-1 flex-grow">
+        @livewire('tags', $property)
+    </div>
+    @endif
 </div>
 @else
     @include('insufficient',['type'=>'property'])

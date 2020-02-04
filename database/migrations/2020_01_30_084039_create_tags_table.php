@@ -17,7 +17,7 @@ class CreateTagsTable extends Migration
             $table->increments('id');
             $table->integer('property_id');
             $table->string('key');
-            $table->string('value');
+            $table->string('value')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
